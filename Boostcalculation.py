@@ -34,12 +34,13 @@ def single(vin1, vout1, fs1, Ioutmax1):      #Function for single stage boost co
         ssb.writerow(data)      
       
 def dual(vin1, vout1, fs1, Ioutmax1, vin2, vout2, fs2, Ioutmax2):  #function for two stage boost converter
+    #First stage calculations
     D1 = (1 - ((vin1) * (.8)) / (vout1))
     diL1 = (0.2) * (Ioutmax1) * ((vout1) / (vin1))
     L1 = (vin1 * (vout1 - vin1)) / ((diL1) * (fs1) * (vout1))
     dvout1 = vout1 * 0.0005
     C1 = (Ioutmax1 * D1) / (fs1 * dvout1)
-
+    #Second stage calculations
     D2 = 1 - ((vin2) * (.8)) / (vout2)
     diL2 = (0.2) * (Ioutmax2) * (vout2 / vin2)
     L2 = (vin2 * (vout2 - vin2)) / ((diL2) * (fs2) * (vout2))
@@ -95,8 +96,3 @@ elif x == 'dual':       #Promotes user for information to do calculation for two
 
 else:
     print("No match.")
-
-  
-
-
-
